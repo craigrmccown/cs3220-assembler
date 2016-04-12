@@ -184,7 +184,7 @@ def second_pass(tokens):
                         elif names.get(imm_token.value):
                             imm = names.get(imm_token.value)
                         else:
-                            raise UndefinedException(token, imm_token.value)
+                            raise UndefinedSymbolException(token, imm_token.value)
                     elif imm_token.is_type(parse.NUMBER):
                         imm = imm_token.value
                     else:
