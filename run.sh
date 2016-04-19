@@ -12,5 +12,5 @@ function usage {
 CODE=$(python ../cs3220-assembler/assembler.py $1)
 
 if [ $? -eq 0 ]; then
-    echo $CODE > $2
+    echo "$CODE" > $2
 fi
