@@ -49,14 +49,17 @@ if __name__ == '__main__':
     try:
         main()
     except parse.ParseException as e:
-        print('Error: {0}'.format(str(e)))
+        print('Error: {0}'.format(str(e)), file=sys.stderr)
+        sys.exit(1)
     except generate.UndefinedSymbolException as e:
         line_num = e.token.attributes.get('line_num')
         text = e.token.attributes.get('text')
-        print('Undefined error at line {0}: {1}'.format(line_num, text))
-        print(str(e))
+        print('Undefined error at line {0}: {1}'.format(line_num, text), file=sys.stderr)
+        print('Line contains: {0}'.format(str(e)), file=sys.stderr)
+        sys.exit(1)
     except generate.SemanticException as e:
         line_num = e.token.attributes.get('line_num')
         text = e.token.attributes.get('text')
-        print('Semantic error at line {0}: {1}'.format(line_num, text))
-        print(str(e))
+        print('Semantic error at line {0}: {1}'.format(line_num, text), file=sys.stderr)
+        print('Line contains: {0}'.format(str(e)), file=sys.stderr)
+        sys.exit(1)
